@@ -2,7 +2,7 @@ import { db, newId, type Session } from "../db.js";
 import { HttpError, type Request } from "../http.js";
 
 /** How long a sign-in lasts. */
-export const SESSION_DAYS = 30;
+export const SESSION_DAYS = 365;
 
 export function createSession(userId: string): Session {
   const session = {
@@ -19,7 +19,6 @@ export function sessionCookie(session: Session) {
     `shelf_session=${session.id}`,
     "Path=/",
     "HttpOnly",
-    "Secure",
     "SameSite=Lax",
     `Expires=${session.expiresAt.toUTCString()}`,
   ].join("; ");

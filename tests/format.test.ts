@@ -1,9 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { formatDate, pluralize, slugify } from "../src/lib/format.js";
+import { formatDay, pluralize } from "../src/lib/format.js";
+import { slugify } from "../src/lib/slug.js";
 
 describe("format", () => {
   it("formats dates in UTC", () => {
-    expect(formatDate(new Date("2026-11-03T23:30:00Z"))).toBe("3 Nov 2026");
+    expect(formatDay(new Date("2026-11-03T23:30:00Z"))).toBe("3 Nov 2026");
   });
 
   it("slugifies titles, dropping accents", () => {

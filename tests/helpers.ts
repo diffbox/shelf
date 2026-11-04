@@ -3,6 +3,7 @@ import { db, newId, reset, type User } from "../src/db.js";
 import type { Request } from "../src/http.js";
 import { dispatch } from "../src/router.js";
 import "../src/routes/books.js";
+import "../src/routes/goals.js";
 import "../src/routes/users.js";
 
 export function seedUser(overrides: Partial<User> = {}): User {

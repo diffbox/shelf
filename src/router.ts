@@ -6,7 +6,11 @@ type Route = { method: string; pattern: RegExp; keys: string[]; handler: Handler
 const routes: Route[] = [];
 
 /** Registers a route; `:name` segments become params. */
-export function route(method: string, path: string, handler: Handler) {
+export function route(
+  method: string,
+  path: string,
+  handler: Handler,
+) {
   const keys: string[] = [];
   const pattern = new RegExp(
     "^" +

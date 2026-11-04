@@ -2,6 +2,7 @@ import { createServer } from "node:http";
 import { HttpError, readBody, send } from "./http.js";
 import { dispatch } from "./router.js";
 import "./routes/books.js";
+import "./routes/goals.js";
 import "./routes/users.js";
 
 const PORT = Number(process.env.PORT ?? 3000);

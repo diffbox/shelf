@@ -13,11 +13,13 @@ export type Book = {
   createdAt: Date;
 };
 export type Session = { id: string; userId: string; expiresAt: Date };
+export type Goal = { id: string; userId: string; year: number; target: number; createdAt: Date };
 
 export const db = {
   users: new Map<string, User>(),
   books: new Map<string, Book>(),
   sessions: new Map<string, Session>(),
+  goals: new Map<string, Goal>(),
 };
 
 export function newId(prefix: string) {
@@ -32,4 +34,5 @@ export function reset() {
   db.users.clear();
   db.books.clear();
   db.sessions.clear();
+  db.goals.clear();
 }

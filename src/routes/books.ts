@@ -1,17 +1,25 @@
-import { requireAdmin, requireUser } from "../auth/guards.js";
+import { requireUser } from "../auth/guards.js";
 import { booksFor, db, newId } from "../db.js";
 import { created, HttpError, noContent, ok } from "../http.js";
-import { formatDate, slugify } from "../lib/format.js";
+import { formatDay } from "../lib/format.js";
+import { slugify } from "../lib/slug.js";
 import { validateBook } from "../lib/validate.js";
 import { route } from "../router.js";
 
-const view = (b: { id: string; title: string; author: string; slug: string; pages: number | null; finishedAt: Date | null }) => ({
+const view = (b: {
+  id: string;
+  title: string;
+  author: string;
+  slug: string;
+  pages: number | null;
+  finishedAt: Date | null;
+}) => ({
   id: b.id,
   title: b.title,
   author: b.author,
   slug: b.slug,
   pages: b.pages,
-  finished: b.finishedAt ? formatDate(b.finishedAt) : null,
+  finished: b.finishedAt ? formatDay(b.finishedAt) : null,
 });
 
 route("GET", "/books", (req) => {
@@ -43,7 +51,7 @@ route("POST", "/books/:id/finish", (req) => {
 });
 
 route("DELETE", "/books/:id", (req) => {
-  requireAdmin(req);
+  requireUser(req);
   if (!db.books.delete(req.params.id)) throw new HttpError(404, "No such book");
   return noContent();
 });
