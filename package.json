@@ -1,0 +1,22 @@
+{
+  "name": "shelf",
+  "version": "0.3.0",
+  "private": true,
+  "description": "A small API for tracking what you read.",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc -p .",
+    "test": "vitest run",
+    "export": "tsx src/cli/export.ts"
+  },
+  "dependencies": {
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}
