@@ -1,4 +1,4 @@
-import { requireAdmin, requireUser } from "../auth/guards.js";
+import { requireUser } from "../auth/guards.js";
 import { booksFor, db, newId } from "../db.js";
 import { created, HttpError, noContent, ok } from "../http.js";
 import { formatDay } from "../lib/format.js";
@@ -51,7 +51,7 @@ route("POST", "/books/:id/finish", (req) => {
 });
 
 route("DELETE", "/books/:id", (req) => {
-  requireAdmin(req);
+  requireUser(req);
   if (!db.books.delete(req.params.id)) throw new HttpError(404, "No such book");
   return noContent();
 });

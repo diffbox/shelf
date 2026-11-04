@@ -10,8 +10,3 @@ export function exportCsv(books: Book[]) {
     .map((b) => [b.title, b.author, b.pages?.toString() ?? "", b.finishedAt ? formatDay(b.finishedAt) : ""]);
   return [["Title", "Author", "Pages", "Finished"], ...rows].map((r) => r.map(escape).join(",")).join("\n");
 }
-
-/** The v1 export format, still read by the importer in shelf-sync. */
-export function legacyExport(books: Book[]) {
-  return books.map((b) => `${b.title} by ${b.author}`).join("\n");
-}

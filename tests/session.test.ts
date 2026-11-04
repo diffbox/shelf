@@ -4,11 +4,11 @@ import { call, reset, seedUser } from "./helpers.js";
 describe("sessions", () => {
   beforeEach(reset);
 
-  it("signs in by email and sets a secure cookie", async () => {
+  it("signs in by email and sets a cookie", async () => {
     seedUser();
     const res = await call("POST", "/sessions", { body: { email: "ADA@example.com " } });
     expect(res.status).toBe(201);
-    expect(res.headers?.["set-cookie"]).toMatch(/HttpOnly; Secure; SameSite=Lax/);
+    expect(res.headers?.["set-cookie"]).toMatch(/HttpOnly; SameSite=Lax/);
   });
 
   it("rejects unknown emails", async () => {

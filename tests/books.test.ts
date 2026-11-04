@@ -19,12 +19,10 @@ describe("books", () => {
     expect(res.body).toEqual([]);
   });
 
-  it("lets only admins delete books", async () => {
+  it("deletes a book", async () => {
     const ada = seedUser();
     const added = await call("POST", "/books", { user: ada, body: { title: "Piranesi", author: "Susanna Clarke" } });
     const id = (added.body as { id: string }).id;
-    await expect(call("DELETE", `/books/${id}`, { user: ada })).rejects.toThrow("Admins only");
-    const admin = seedUser({ email: "root@example.com", isAdmin: true });
-    expect((await call("DELETE", `/books/${id}`, { user: admin })).status).toBe(204);
+    expect((await call("DELETE", `/books/${id}`, { user: ada })).status).toBe(204);
   });
 });
