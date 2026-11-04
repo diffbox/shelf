@@ -2,7 +2,7 @@ import { requireUser } from "../auth/guards.js";
 import { createSession, endSession, sessionCookie } from "../auth/session.js";
 import { booksFor, db } from "../db.js";
 import { created, HttpError, noContent, ok } from "../http.js";
-import { formatDate, pluralize } from "../lib/format.js";
+import { formatDay, pluralize } from "../lib/format.js";
 import { route } from "../router.js";
 
 route("GET", "/me", (req) => {
@@ -12,7 +12,7 @@ route("GET", "/me", (req) => {
     id: user.id,
     name: user.name,
     email: user.email,
-    joined: formatDate(user.createdAt),
+    joined: formatDay(user.createdAt),
     shelf: pluralize(books.length, 'book'),
     finished: pluralize(books.filter((b) => b.finishedAt).length, 'book')
   });
