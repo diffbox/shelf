@@ -6,7 +6,14 @@ import { slugify } from "../lib/slug.js";
 import { validateBook } from "../lib/validate.js";
 import { route } from "../router.js";
 
-const view = (b: { id: string; title: string; author: string; slug: string; pages: number | null; finishedAt: Date | null }) => ({
+const view = (b: {
+  id: string;
+  title: string;
+  author: string;
+  slug: string;
+  pages: number | null;
+  finishedAt: Date | null;
+}) => ({
   id: b.id,
   title: b.title,
   author: b.author,
